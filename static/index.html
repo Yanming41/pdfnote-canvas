@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>pdfnote-canvas</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div id="title" class="title">Loading PDF...</div>
+        <div id="path" class="path"></div>
+      </div>
+      <div class="actions">
+        <button id="exportBtn">Export</button>
+      </div>
+    </header>
+    <main class="layout">
+      <section id="viewer" class="viewer"></section>
+      <aside class="side">
+        <section class="selectionBox">
+          <h2>Selection</h2>
+          <div id="selectionText" class="selectionText">Drag text on the PDF page.</div>
+          <textarea id="question" placeholder="Ask about the selected text..."></textarea>
+          <button id="askBtn">Ask AI / Save Annotation</button>
+          <div id="status" class="status"></div>
+        </section>
+        <section>
+          <h2>Annotations</h2>
+          <div id="annotations" class="annotations"></div>
+        </section>
+      </aside>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

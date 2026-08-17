@@ -1,0 +1,186 @@
+:root {
+  color-scheme: light;
+  --bg: #e8e6df;
+  --panel: #f8f8f5;
+  --ink: #202124;
+  --muted: #626866;
+  --line: #c9c5bb;
+  --accent: #1f6feb;
+  --highlight: rgba(255, 216, 77, 0.42);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+.topbar {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.title { font-weight: 650; }
+.path { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.actions button, #askBtn {
+  border: 1px solid #b7bcc2;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+#askBtn { width: 100%; background: var(--accent); color: white; border-color: var(--accent); }
+.layout {
+  display: grid;
+  grid-template-columns: minmax(520px, 1fr) 370px;
+  height: calc(100vh - 58px);
+}
+.viewer {
+  overflow: auto;
+  padding: 22px 0 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.page {
+  position: relative;
+  background: white;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.22);
+}
+.page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+.textLayer {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  overflow: hidden;
+}
+.textLayer span {
+  position: absolute;
+  white-space: pre;
+  transform-origin: left top;
+  cursor: text;
+  color: transparent;
+  line-height: 1;
+}
+.textLayer ::selection { background: rgba(31,111,235,0.26); color: transparent; }
+.highlights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hl {
+  position: absolute;
+  background: var(--highlight);
+  border-bottom: 2px solid rgba(196, 143, 0, 0.7);
+}
+.pageNo {
+  position: absolute;
+  right: -46px;
+  top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.side {
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+  overflow: auto;
+  padding: 14px;
+}
+h2 { margin: 8px 0 10px; font-size: 15px; }
+.selectionBox {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 12px;
+}
+.selectionText {
+  min-height: 74px;
+  max-height: 160px;
+  overflow: auto;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #2f3437;
+}
+textarea {
+  width: 100%;
+  min-height: 82px;
+  resize: vertical;
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  font: inherit;
+}
+.status { font-size: 12px; color: var(--muted); margin-top: 8px; min-height: 18px; }
+.annotation {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.annotation .meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.annotation .quote {
+  font-size: 13px;
+  border-left: 3px solid #ffd84d;
+  padding-left: 8px;
+  margin-bottom: 8px;
+  color: #30363d;
+}
+.annotation .answer { font-size: 13px; line-height: 1.45; white-space: pre-wrap; }
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; height: auto; }
+  .side { border-left: 0; border-top: 1px solid var(--line); }
+}
+
+.block.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(31,111,235,0.14);
+}
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 8px;
+}
+.msg {
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  border-radius: 6px;
+  padding: 7px 8px;
+}
+.msg.user { background: #eef4ff; }
+.msg.assistant { background: #f3f4f0; }
+.msg.note { background: #fff7d7; }
+.continueBtn {
+  width: 100%;
+  margin-top: 9px;
+  border: 1px solid #b7bcc2;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.hl.active {
+  background: rgba(31, 111, 235, 0.24);
+  border-bottom-color: rgba(31, 111, 235, 0.8);
+}
